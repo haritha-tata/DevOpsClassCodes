@@ -9,7 +9,7 @@ pipeline{
 	    
                steps{
 		 echo 'cloning..'
-                 git 'https://github.com/haritha-tata/DevOpsClassCodes.git'
+                 git branch: 'main', url: 'https://github.com/haritha-tata/DevOpsClassCodes.git'
               }
           }
           stage('Compile'){
