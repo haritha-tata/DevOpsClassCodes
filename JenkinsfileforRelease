@@ -1,0 +1,21 @@
+pipeline{
+    tools{
+        jdk 'myjava'
+        maven 'mymaven'
+    }
+	agent any
+      stages{
+           stage('Checkout'){	    
+               steps{
+		            echo 'cloning FEATURE BRANCH1..'
+                 git branch: 'featureBranch1', url: 'https://github.com/haritha-tata/DevOpsClassCodes.git'
+              }
+          }
+	        stage('Deploy'){		  
+              steps{		  
+                  mvn --batch-mode clean be -DskipTests=true build-helper:parse-version release:prepare release:perform -DdevelopmentVersion=${parsedVersion.majorVersion}.${parsedVersion.nextMinorVersion}.0-SNAPSHOT
+              }
+          }
+          
+      }
+}
